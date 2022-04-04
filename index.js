@@ -3,7 +3,7 @@ const end = document.getElementById('end')
 const reset = document.getElementById('reset')
 let second = document.querySelector('.second')
 let minutes = document.querySelector('.minute')
-
+const buttons = document.querySelectorAll('.button')
 
 function StopWatch(){
     let interval ,running;
@@ -31,6 +31,7 @@ function StopWatch(){
     }
         
     this.reset= function(){
+        running =false
         clearInterval(interval)
         second.textContent= '00'
         minutes.textContent='00'
@@ -41,5 +42,13 @@ const newStopWatch = new StopWatch();
 start.addEventListener('click', newStopWatch.start)
 end.addEventListener('click' , newStopWatch.end)
 reset.addEventListener('click' , newStopWatch.reset)
+buttons.forEach(e=>{
+    e.classList.remove('active')
+    e.addEventListener('click' , ()=>{
+    buttons.forEach(a=>{a.classList.remove('active')})
+    e.classList.add('active')
+    })
+    
+})
 
 
